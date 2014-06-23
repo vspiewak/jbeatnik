@@ -5,3 +5,8 @@ management:
   port: 9001
   address: 127.0.0.1
   contextPath: /admin
+
+spring:
+    thymeleaf:
+        mode: HTML5
+        cache: false
