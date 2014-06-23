@@ -1,15 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.thymeleaf.org ">
+      th:lang="${#locale.language}">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
         <title th:text="#{error_title}"></title>
+
+        <!-- Bootstrap core CSS -->
+        <!--<link href="../../dist/css/bootstrap.min.css" rel="stylesheet" />-->
+        <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <style>
+            body {
+                padding-top: 40px;
+                padding-bottom: 40px;
+                background-color: #eee;
+            }
+        </style>
+
     </head>
     <body>
         <div class="container">
 
-            <span th:text="#{status} + ':'"></span> <span th:text="${status}"></span> (<span th:text="${error}"></span>)
+            <div class="alert alert-danger">
+                <a href="#" class="alert-link">
+                    <span class="glyphicon glyphicon-eye-close"></span>
+                    |
+                    <span th:text="#{status} + ':'"></span> <span th:text="${status}"></span>
+                    |
+                    <span th:text="#{reason} + ':'"></span> <span th:text="${error}"></span>
+                </a>
+            </div>
 
         </div>
     </body>
