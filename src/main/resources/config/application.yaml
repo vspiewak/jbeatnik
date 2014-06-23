@@ -9,3 +9,4 @@ management:
 spring:
     thymeleaf:
         mode: HTML5
+        cache: false
