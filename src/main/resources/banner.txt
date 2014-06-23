@@ -1,0 +1,18 @@
+
+          JJJJJJJJJJJBBBBBBBBBBBBBBBBB                                               tttt                            iiii  kkkkkkkk
+          J:::::::::JB::::::::::::::::B                                           ttt:::t                           i::::i k::::::k
+          J:::::::::JB::::::BBBBBB:::::B                                          t:::::t                            iiii  k::::::k
+          JJ:::::::JJBB:::::B     B:::::B                                         t:::::t                                  k::::::k
+            J:::::J    B::::B     B:::::B    eeeeeeeeeeee    aaaaaaaaaaaaa  ttttttt:::::ttttttt  nnnn  nnnnnnnn    iiiiiii  k:::::k    kkkkkkk
+            J:::::J    B::::B     B:::::B  ee::::::::::::ee  a::::::::::::a t:::::::::::::::::t  n:::nn::::::::nn  i:::::i  k:::::k   k:::::k
+            J:::::J    B::::BBBBBB:::::B  e::::::eeeee:::::eeaaaaaaaaa:::::at:::::::::::::::::t  n::::::::::::::nn  i::::i  k:::::k  k:::::k
+            J:::::j    B:::::::::::::BB  e::::::e     e:::::e         a::::atttttt:::::::tttttt  nn:::::::::::::::n i::::i  k:::::k k:::::k
+            J:::::J    B::::BBBBBB:::::B e:::::::eeeee::::::e  aaaaaaa:::::a      t:::::t          n:::::nnnn:::::n i::::i  k::::::k:::::k
+JJJJJJJ     J:::::J    B::::B     B:::::Be:::::::::::::::::e aa::::::::::::a      t:::::t          n::::n    n::::n i::::i  k:::::::::::k
+J:::::J     J:::::J    B::::B     B:::::Be::::::eeeeeeeeeee a::::aaaa::::::a      t:::::t          n::::n    n::::n i::::i  k:::::::::::k
+J::::::J   J::::::J    B::::B     B:::::Be:::::::e         a::::a    a:::::a      t:::::t    ttttttn::::n    n::::n i::::i  k::::::k:::::k
+J:::::::JJJ:::::::J  BB:::::BBBBBB::::::Be::::::::e        a::::a    a:::::a      t::::::tttt:::::tn::::n    n::::ni::::::ik::::::k k:::::k
+ JJ:::::::::::::JJ   B:::::::::::::::::B  e::::::::eeeeeeeea:::::aaaa::::::a      tt::::::::::::::tn::::n    n::::ni::::::ik::::::k  k:::::k
+   JJ:::::::::JJ     B::::::::::::::::B    ee:::::::::::::e a::::::::::aa:::a       tt:::::::::::ttn::::n    n::::ni::::::ik::::::k   k:::::k
+     JJJJJJJJJ       BBBBBBBBBBBBBBBBB       eeeeeeeeeeeeee  aaaaaaaaaa  aaaa         ttttttttttt  nnnnnn    nnnnnniiiiiiiikkkkkkkk    kkkkkkk
+
