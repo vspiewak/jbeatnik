@@ -12,7 +12,12 @@ spring:
         cache: false
 
     datasource:
-        url: jdbc:hsqldb:mem:jbeatnik
-        driverClassName: org.hsqldb.jdbcDriver
-        username: sa
+        url: jdbc:h2:mem:jbeatnik;db_close_on_exit=false
+        dataSourceClassName: org.h2.jdbcx.JdbcDataSource
+        username:
         password:
+
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        database: H2
+        show_sql: true

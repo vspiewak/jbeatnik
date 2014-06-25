@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 public class User {
 
     @Id
-    @Column(name="id", updatable = false, nullable = false)
+    @Column(updatable = false, nullable = false)
     @Size(min = 0, max = 50)
     private String login;
 
