@@ -1,5 +1,6 @@
 package com.github.vspiewak.jbeatnik.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ public class User {
     @Size(min = 0, max = 50)
     private String login;
 
+    @JsonIgnore
     @Size(min = 0, max = 50)
     private String password;
 
