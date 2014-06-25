@@ -1,4 +1,4 @@
-package com.github.vspiewak.jbeatnik;
+package com.github.vspiewak.jbeatnik.domain;
 
 public class Greeting {
 

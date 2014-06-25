@@ -10,3 +10,9 @@ spring:
     thymeleaf:
         mode: HTML5
         cache: false
+
+    datasource:
+        url: jdbc:hsqldb:mem:jbeatnik
+        driverClassName: org.hsqldb.jdbcDriver
+        username: sa
+        password:
