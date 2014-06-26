@@ -1,11 +1,7 @@
 package com.github.vspiewak.jbeatnik.controller;
 
 import com.github.vspiewak.jbeatnik.domain.User;
-import com.github.vspiewak.jbeatnik.repository.UserRepository;
 import com.github.vspiewak.jbeatnik.service.UserService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
