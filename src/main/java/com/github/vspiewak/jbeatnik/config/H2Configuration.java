@@ -10,10 +10,10 @@ public class H2Configuration {
 
     @Bean
     public ServletRegistrationBean h2servletRegistration() {
-        ServletRegistrationBean registration = new ServletRegistrationBean(
-                new WebServlet());
-        registration.addUrlMappings("/h2console/*");
-        return registration;
+        WebServlet webServlet = new WebServlet();
+        ServletRegistrationBean bean = new ServletRegistrationBean(webServlet);
+        bean.addUrlMappings("/h2console/*");
+        return bean;
     }
 
 }
