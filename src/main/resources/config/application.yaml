@@ -12,8 +12,9 @@ spring:
         cache: false
 
     datasource:
-        url: jdbc:h2:mem:jbeatnik
+        url: jdbc:h2:mem:jbeatnik;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
         dataSourceClassName: org.h2.jdbcx.JdbcDataSource
+        driverClassName: org.h2.Driver
         username:
         password:
 
