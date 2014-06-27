@@ -17,7 +17,7 @@ public class User {
     private String login;
 
     @JsonIgnore
-    @Size(min = 0, max = 50)
+    @Size(min = 0, max = 500)
     private String password;
 
     @Email
