@@ -17,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-@IntegrationTest({"server.port=9000", "management.port=9001"})
+@IntegrationTest
 public class UserControllerTestIT {
 
     RestTemplate template = new TestRestTemplate();
