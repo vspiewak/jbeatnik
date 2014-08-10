@@ -15,9 +15,9 @@ import java.io.IOException;
  * Returns a 401 error code (Unauthorized) to the client.
  */
 @Component
-public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
+public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
-    private final Logger log = LoggerFactory.getLogger(RestAuthenticationEntryPoint.class);
+    private final Logger log = LoggerFactory.getLogger(CustomAuthenticationEntryPoint.class);
 
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,

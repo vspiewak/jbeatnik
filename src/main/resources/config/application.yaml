@@ -50,3 +50,9 @@ spring:
         generate-ddl: false
         hibernate:
             ddl-auto: none
+
+authentication:
+    oauth:
+        clientid: jbeatnikapp
+        secret: myOAuthSecret
+        tokenValidityInSeconds: 1800 # Token is valid 30 minutes

@@ -1,34 +1,24 @@
 package com.github.vspiewak.jbeatnik.config;
 
-import com.github.vspiewak.jbeatnik.security.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
+import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler;
 
 import javax.inject.Inject;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
-    @Inject
-    private RestAuthenticationEntryPoint authenticationEntryPoint;
-
-    @Inject
-    private RestAuthenticationSuccessHandler restAuthenticationSuccessHandler;
-
-    @Inject
-    private RestAuthenticationFailureHandler restAuthenticationFailureHandler;
-
-    @Inject
-    private RestLogoutSuccessHandler restLogoutSuccessHandler;
 
     @Inject
     private UserDetailsService userDetailsService;
@@ -57,32 +47,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-
-        http
-                .exceptionHandling()
-                .authenticationEntryPoint(authenticationEntryPoint)
-                .and()
-                .formLogin()
-                .loginProcessingUrl("/auth/login")
-                .successHandler(restAuthenticationSuccessHandler)
-                .failureHandler(restAuthenticationFailureHandler)
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .permitAll()
-                .and()
-                .logout()
-                .logoutUrl("/auth/logout")
-                .logoutSuccessHandler(restLogoutSuccessHandler)
-                .deleteCookies("JSESSIONID")
-                .permitAll()
-                .and()
-                .csrf().disable()
-                .headers().frameOptions().disable()
-                .authorizeRequests()
-                .antMatchers("/manage/**").hasAuthority(Authorities.ROLE_ADMIN.name())
-                .antMatchers("/**").authenticated();
+    @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true)
+    private static class GlobalSecurityConfiguration extends GlobalMethodSecurityConfiguration {
+        @Override
+        protected MethodSecurityExpressionHandler createExpressionHandler() {
+            return new OAuth2MethodSecurityExpressionHandler();
+        }
 
     }
 
