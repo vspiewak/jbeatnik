@@ -57,8 +57,6 @@ public class OAuth2Configuration {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/views/**").permitAll()
-                    .antMatchers("/manage/**").hasAnyAuthority(Authorities.ROLE_ADMIN.name())
                     .antMatchers("/**").authenticated();
 
         }

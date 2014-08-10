@@ -89,4 +89,22 @@ public class AuthenticationTestIT {
 
     }
 
+    @Test
+    public void should_not_return_metrics_without_authentication() throws Exception {
+
+        ResponseEntity<String> response = template.getForEntity(BASE_URL + "/manage/metrics", String.class);
+        assertThat(response.getStatusCode(), equalTo(HttpStatus.UNAUTHORIZED));
+
+    }
+
+    @Test
+    public void should_return_metrics_after_authentication() throws Exception {
+
+        OAuth2RestTemplate oauth2Template = authenticate("admin", "admin");
+
+        ResponseEntity<String> response = oauth2Template.getForEntity(BASE_URL + "/manage/metrics", String.class);
+        assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
+
+    }
+
 }

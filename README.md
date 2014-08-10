@@ -6,10 +6,12 @@ Sample
 
     curl -i http://localhost:9000/manage/health
     
-    curl -i -X POST -H "Authorization: Basic amJlYXRuaWthcHA6bXlPQXV0aFNlY3JldA==" 'http://localhost:9000/oauth/token?username=admin&password=admin&grant_type=password'
-    curl -H "Authorization: Basic amJlYXRuaWthcHA6bXlPQXV0aFNlY3JldA==" 'http://localhost:9000/oauth/token?grant_type=refresh_token&refresh_token=fe4bef09-f093-4879-b307-470b20e9f2bf'
-    curl -i -H "Authorization: Bearer 5f89a812-fdc3-40f1-afd3-20bfd9b25edb" http://localhost:9000/user
-    curl -i -H "Authorization: Bearer 5f89a812-fdc3-40f1-afd3-20bfd9b25edb" http://localhost:9000/oauth/logout
+    curl -vu jbeatnikapp:myOAuthSecret 'http://localhost:9000/oauth/token?username=admin&password=admin&grant_type=password'    
+    curl -vu jbeatnikapp:myOAuthSecret 'http://localhost:9000/oauth/token?grant_type=refresh_token&refresh_token=<refresh_token>'
+    
+    curl -i -H "Authorization: Bearer <access_token>" http://localhost:9000/user
+    curl -i -H "Authorization: Bearer <access_token>" http://localhost:9000/manage/metrics
+    curl -i -H "Authorization: Bearer <access_token>" http://localhost:9000/oauth/logout
 
 Docs
 ----
