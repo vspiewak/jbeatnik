@@ -59,7 +59,7 @@ public class OAuth2Configuration {
                     .authorizeRequests()
                     .antMatchers("/manage/**").hasAuthority(Authorities.ROLE_ADMIN.name())
                     .antMatchers("/manage/health").permitAll()
-                    .antMatchers("/**").authenticated();
+                    .antMatchers("/api/**").authenticated();
 
         }
 
