@@ -30,7 +30,7 @@ public class UserServiceTest {
     public void should_find_the_user_after_a_save() {
 
         User user = new User();
-        user.setLogin("toto");
+        user.setUsername("toto");
         user.setPassword("toto");
         user.setEmail("toto@mail.me");
 

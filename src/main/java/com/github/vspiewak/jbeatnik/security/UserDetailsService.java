@@ -1,5 +1,6 @@
 package com.github.vspiewak.jbeatnik.security;
 
+import com.github.vspiewak.jbeatnik.domain.Authority;
 import com.github.vspiewak.jbeatnik.domain.User;
 import com.github.vspiewak.jbeatnik.repository.UserRepository;
 import org.slf4j.Logger;
@@ -37,8 +38,10 @@ public class UserDetailsService implements org.springframework.security.core.use
         }
 
         Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(ROLE_USER.name());
+        for (Authority authority : userFromDatabase.getAuthorities()) {
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(authority.getName());
             grantedAuthorities.add(grantedAuthority);
+        }
 
         return new org.springframework.security.core.userdetails.User(lowercaseLogin, userFromDatabase.getPassword(), grantedAuthorities);
     }

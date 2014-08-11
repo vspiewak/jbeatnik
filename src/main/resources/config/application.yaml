@@ -6,29 +6,7 @@ management:
     address: 127.0.0.1
     contextPath: /manage
     security:
-        role: ADMIN
-
-endpoints:
-    autoconfig:
-        sensitive: true
-    beans:
-        sensitive: true
-    configprops:
-        sensitive: true
-    dump:
-        sensitive: true
-    env:
-        sensitive: true
-    health:
-        sensitive: false
-    info:
-        sensitive: true
-    metrics:
-        sensitive: true
-    shutdown:
-        sensitive: true
-    trace:
-        sensitive: true
+        enabled: true
 
 spring:
     thymeleaf:
