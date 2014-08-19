@@ -1,3 +1,9 @@
+info:
+    app:
+        name: JBeatnik
+        description: ${info.app.name} is a Spring-Boot + AngularJS application
+        version: 0.0.1
+
 server:
     port: 9000
 
