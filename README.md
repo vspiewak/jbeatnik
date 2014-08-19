@@ -9,7 +9,7 @@ Sample
     curl -vu jbeatnikapp:myOAuthSecret 'http://localhost:9000/oauth/token?username=admin&password=admin&grant_type=password'    
     curl -vu jbeatnikapp:myOAuthSecret 'http://localhost:9000/oauth/token?grant_type=refresh_token&refresh_token=<refresh_token>'
     
-    curl -i -H "Authorization: Bearer <access_token>" http://localhost:9000/user
+    curl -i -H "Authorization: Bearer <access_token>" http://localhost:9000/api/user
     curl -i -H "Authorization: Bearer <access_token>" http://localhost:9000/manage/metrics
     curl -i -H "Authorization: Bearer <access_token>" http://localhost:9000/oauth/logout
 
