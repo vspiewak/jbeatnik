@@ -16,6 +16,16 @@ config(['$routeProvider', function($routeProvider) {
             controller: 'HomeController'
         })
 
+        .when('/login', {
+            templateUrl: 'views/login.html',
+            controller: 'LoginController'
+        })
+
+        .when('/profile', {
+            templateUrl: 'views/profile.html',
+            controller: 'ProfileController'
+        })
+
         .when('/about', {
             templateUrl: 'views/about.html',
             controller: 'AboutController'

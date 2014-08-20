@@ -14,6 +14,14 @@ angular.module('myApp.controllers', [])
 
     }])
 
+    .controller('LoginController', ['$scope', function($scope) {
+
+    }])
+
+    .controller('ProfileController', ['$scope', function($scope) {
+
+    }])
+
     .controller('AboutController', ['$scope', function($scope) {
 
     }]);
