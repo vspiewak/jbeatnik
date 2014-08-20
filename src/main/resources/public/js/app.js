@@ -1,6 +1,7 @@
 'use strict';
 // Declare app level module which depends on filters, and services
 angular.module('myApp', [
+    'ngResource',
     'ngRoute',
     'myApp.filters',
     'myApp.services',
@@ -8,7 +9,17 @@ angular.module('myApp', [
     'myApp.controllers'
 ]).
 config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: 'HomeCtrl'});
-    $routeProvider.when('/about', {templateUrl: 'partials/about.html', controller: 'AboutCtrl'});
-    $routeProvider.otherwise({redirectTo: '/home'});
+    $routeProvider
+
+        .when('/home', {
+            templateUrl: 'views/home.html',
+            controller: 'HomeController'
+        })
+
+        .when('/about', {
+            templateUrl: 'views/about.html',
+            controller: 'AboutController'
+        })
+
+        .otherwise({redirectTo: '/home'});
 }]);

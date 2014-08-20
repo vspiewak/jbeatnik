@@ -19,6 +19,7 @@
     "angular-route": "~1.2.22",
     "angular-loader": "~1.2.22",
     "angular-mocks": "~1.2.22",
-    "html5-boilerplate": "~4.3.0"
+    "html5-boilerplate": "~4.3.0",
+    "angular-resource": "~1.2.22"
   }
 }
