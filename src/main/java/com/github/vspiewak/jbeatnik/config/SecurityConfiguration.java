@@ -43,7 +43,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers("/bower_components/**")
-                .antMatchers("/h2console/**");
+                .antMatchers("/h2console/**")
+                .antMatchers("/api/register");
 
     }
 

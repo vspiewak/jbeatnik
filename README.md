@@ -5,12 +5,12 @@ Sample
 ------
 
     curl -i http://localhost:9000/manage/health
-    
+    curl -i -XPOST -H "Content-Type: application/json" -d '{"username":"test","password":"test","email":"test@mail.me"}' http://localhost:9000/api/register 
+
     curl -vu jbeatnikapp:myOAuthSecret 'http://localhost:9000/oauth/token?username=admin&password=admin&grant_type=password'    
     curl -vu jbeatnikapp:myOAuthSecret 'http://localhost:9000/oauth/token?grant_type=refresh_token&refresh_token=<refresh_token>'
     
-    curl -i -H "Authorization: Bearer <access_token>" http://localhost:9000/api/user
-    curl -i -H "Authorization: Bearer <access_token>" http://localhost:9000/api/me
+    curl -i -H "Authorization: Bearer <access_token>" http://localhost:9000/api/profile
     curl -i -H "Authorization: Bearer <access_token>" http://localhost:9000/manage/metrics
     curl -i -H "Authorization: Bearer <access_token>" http://localhost:9000/oauth/logout
 

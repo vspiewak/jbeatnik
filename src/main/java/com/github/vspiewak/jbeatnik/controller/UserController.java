@@ -3,6 +3,7 @@ package com.github.vspiewak.jbeatnik.controller;
 import com.github.vspiewak.jbeatnik.domain.User;
 import com.github.vspiewak.jbeatnik.service.UserService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.core.Authentication;
@@ -15,7 +16,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/api")
@@ -23,6 +28,21 @@ public class UserController {
 
     @Inject
     private UserService userService;
+
+    @RequestMapping(value = "/register",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> register(@RequestBody User user) {
+
+        if (userService.alreadyExist(user.getUsername())) {
+            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        } else {
+            user = userService.registerUser(user.getUsername(), user.getPassword(), user.getEmail().trim().toLowerCase());
+            user.setPassword(null);
+            return new ResponseEntity<>(user, HttpStatus.CREATED);
+        }
+
+    }
 
     @RequestMapping(value="/profile", method=RequestMethod.GET)
     public ResponseEntity<User> profile() {
@@ -33,18 +53,10 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+        currentUser.setPassword(null);
+
         return new ResponseEntity<>(currentUser, HttpStatus.OK);
 
-    }
-
-    @RequestMapping(value="/user", method=RequestMethod.GET)
-    public @ResponseBody List<User> allUsers() {
-        return userService.findAll();
-    }
-
-    @RequestMapping(value = "/user", method=RequestMethod.POST)
-    public User createUser(@RequestBody User user) {
-        return userService.save(user);
     }
 
 }

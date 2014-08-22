@@ -1,13 +1,8 @@
 package com.github.vspiewak.jbeatnik.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
-import org.hibernate.annotations.*;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.validation.Valid;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
@@ -19,7 +14,6 @@ public class User {
     @Size(min = 0, max = 50)
     private String username;
 
-    @JsonIgnore
     @Size(min = 0, max = 500)
     private String password;
 
