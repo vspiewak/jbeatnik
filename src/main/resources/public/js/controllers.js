@@ -2,7 +2,14 @@
 /* Controllers */
 angular.module('myApp.controllers', [])
 
-    .controller('ApplicationController', ['$scope', 'InfosService', function($scope, InfosService) {
+    .controller('ApplicationController', ['$scope', 'USER_ROLES', 'AuthenticationService', 'Session', 'InfosService',
+        function($scope, USER_ROLES, AuthenticationService, Session, InfosService) {
+
+        $scope.roles = USER_ROLES;
+        $scope.session = Session.get;
+        $scope.isAuthorized = AuthenticationService.isAuthorized;
+        $scope.isAuthenticated = AuthenticationService.isAuthenticated;
+        $scope.logout = AuthenticationService.logout;
 
         InfosService.get(function(data) {
             $scope.infos = data;
@@ -14,7 +21,15 @@ angular.module('myApp.controllers', [])
 
     }])
 
-    .controller('LoginController', ['$scope', function($scope) {
+    .controller('LoginController', ['$scope', 'AuthenticationService', 'Session', function($scope, AuthenticationService, Session) {
+
+        $scope.login = function () {
+
+            AuthenticationService.login({
+                username: $scope.username,
+                password: $scope.password
+            });
+        }
 
     }])
 

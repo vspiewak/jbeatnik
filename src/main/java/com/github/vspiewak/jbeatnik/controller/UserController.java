@@ -24,8 +24,8 @@ public class UserController {
     @Inject
     private UserService userService;
 
-    @RequestMapping(value="/me", method=RequestMethod.GET)
-    public ResponseEntity<User> me() {
+    @RequestMapping(value="/profile", method=RequestMethod.GET)
+    public ResponseEntity<User> profile() {
 
         User currentUser = userService.getAuthenticatedUser();
 

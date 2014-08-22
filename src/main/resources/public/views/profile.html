@@ -1,2 +1,9 @@
 <h2>Profile</h2>
 <p>The logged user profile...</p>
+<div>authenticated: {{ isAuthenticated() }}</div>
+<div>authorized all: {{ isAuthorized(roles.all) }}</div>
+<div>authorized user: {{ isAuthorized(roles.user) }}</div>
+<div>authorized admin: {{ isAuthorized(roles.admin) }}</div>
+<div>user: {{ session().username }}</div>
+<div>email: {{ session().email }}</div>
+<div>roles: {{ session().roles }}</div>
