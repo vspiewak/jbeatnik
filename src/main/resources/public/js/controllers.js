@@ -25,11 +25,17 @@ angular.module('myApp.controllers', [])
 
         $scope.login = function () {
 
+            $scope.authenticationError = false;
+
             AuthenticationService.login({
                 username: $scope.username,
                 password: $scope.password
+            }).error(function(data) {
+
+                $scope.authenticationError = true;
+
             });
-        }
+        };
 
     }])
 

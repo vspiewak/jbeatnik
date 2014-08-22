@@ -127,7 +127,7 @@ angular.module('myApp.services', [])
 
                 login: function (param) {
                     var data = "username=" + param.username + "&password=" + param.password + "&grant_type=password";
-                    $http.post('oauth/token', data, {
+                    return $http.post('oauth/token', data, {
                         headers: {
                             "Content-Type": "application/x-www-form-urlencoded",
                             "Accept": "application/json",

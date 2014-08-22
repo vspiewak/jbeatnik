@@ -1,4 +1,7 @@
 <form class="form-login" role="form">
+    <div class="alert alert-danger" ng-show="authenticationError">
+        <strong>Authentication failed!</strong> Please try again.
+    </div>
     <h2 class="form-login-heading">Please log in</h2>
     <input type="username" class="form-control" placeholder="Username" ng-model="username" autofocus>
     <input type="password" class="form-control" placeholder="Password" ng-model="password">
