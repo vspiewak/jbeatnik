@@ -60,7 +60,12 @@ angular.module('myApp', [
                 }
             })
 
-            .otherwise({redirectTo: '/home'});
+            .otherwise({
+                redirectTo: '/home',
+                access: {
+                    authorizedRoles: [USER_ROLES.all]
+                }
+            });
         }
     ])
 
@@ -81,8 +86,8 @@ angular.module('myApp', [
 
             // Call when the 401 response is returned by the server
             $rootScope.$on('event:auth-loginRequired', function(rejection) {
-                //console.log('event:auth-loginRequired');
-                $location.path('/login').replace();
+                console.log('event:auth-loginRequired');
+                $location.path('/home').replace();
             });
 
             // Call when the 403 response is returned by the server
@@ -94,6 +99,7 @@ angular.module('myApp', [
             // Call when the user logs out
             $rootScope.$on('event:auth-loginCancelled', function() {
                 console.log('event:auth-loginCancelled');
+                $location.path('/home').replace();
             });
         }
     ]);
