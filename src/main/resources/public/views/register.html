@@ -1,0 +1,30 @@
+
+<form class="form-register" role="form">
+
+    <div class="alert alert-success" ng-show="success">
+        Thank you for registering our service :)
+    </div>
+
+    <div class="alert alert-danger" ng-show="errorUsernameExist">
+        <strong>Username already exist !</strong> Please choose another one.
+    </div>
+
+    <div class="alert alert-danger" ng-show="errorPasswordNotMatching">
+        The password and its confirmation do not match !
+    </div>
+
+    <div class="alert alert-danger" ng-show="error">
+        <strong>Registration failed!</strong> Please check your inputs and try again.
+    </div>
+
+    <h2 class="form-register-heading">Registration</h2>
+
+    <div ng-show="!success">
+        <input type="username" class="form-control" placeholder="Username" ng-model="registerUser.username" autofocus>
+        <input type="email" class="form-control" placeholder="Email" ng-model="registerUser.email">
+        <input type="password" class="form-control" placeholder="Password" ng-model="registerUser.password">
+        <input type="password" class="form-control" placeholder="Confirm password" ng-model="confirmPassword">
+        <button class="btn btn-lg btn-primary btn-block" ng-click="register()" type="submit">Register</button>
+    </div>
+
+</form>

@@ -21,6 +21,51 @@ angular.module('myApp.controllers', [])
 
     }])
 
+    .controller('RegisterController', ['$scope', 'RegisterService', function($scope, RegisterService) {
+
+        $scope.register = function () {
+
+            console.log('register...');
+            console.log($scope.registerUser);
+
+            $scope.success = false;
+            $scope.error = false;
+            $scope.errorUsernameExist = false;
+            $scope.errorPasswordNotMatching = false;
+
+            if($scope.registerUser.password != $scope.confirmPassword) {
+
+                $scope.errorPasswordNotMatching = true;
+
+            } else {
+
+                RegisterService.save($scope.registerUser,
+                    function (value, responseHeaders) {
+
+                        $scope.success = true;
+
+                    },
+                    function (httpResponse) {
+                        console.log('error', httpResponse);
+                        if (httpResponse.status === 304
+                            && httpResponse.statusText === "Not Modified") {
+
+                            $scope.errorUsernameExist = true;
+
+                        } else {
+
+                            $scope.error = true;
+
+                        }
+                    }
+                );
+
+            }
+
+        };
+
+    }])
+
     .controller('LoginController', ['$scope', 'AuthenticationService', 'Session', function($scope, AuthenticationService, Session) {
 
         $scope.login = function () {

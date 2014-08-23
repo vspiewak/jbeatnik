@@ -22,6 +22,14 @@ angular.module('myApp', [
                 }
             })
 
+            .when('/register', {
+                templateUrl: 'views/register.html',
+                controller: 'RegisterController',
+                access: {
+                    authorizedRoles: [USER_ROLES.all]
+                }
+            })
+
             .when('/login', {
                 templateUrl: 'views/login.html',
                 controller: 'LoginController',

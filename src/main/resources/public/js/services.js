@@ -14,6 +14,14 @@ angular.module('myApp.services', [])
         }
     ])
 
+    .factory('RegisterService', ['$resource',
+        function ($resource) {
+            return $resource('api/register', {}, {
+            });
+        }
+    ])
+
+
     .factory('Profile', ['$resource',
         function ($resource) {
             return $resource('api/profile', {}, {
