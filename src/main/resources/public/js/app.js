@@ -87,9 +87,9 @@ angular.module('myApp', [
             // Call when the the client is confirmed
             $rootScope.$on('event:auth-loginConfirmed', function(data) {
                 //console.log('event:auth-loginConfirmed');
-                if ($location.path() === "/login") {
+                //if ($location.path() === "/login") {
                     $location.path('/profile').replace();
-                }
+                //}
             });
 
             // Call when the 401 response is returned by the server
