@@ -25,7 +25,7 @@
                                            'has-success has-feedback':form.username.$valid && form.username.$dirty}">
             <label class="control-label" for="username">Username</label>
             <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                <div class="input-group-addon"><i class="fa fa-user"></i></div>
                 <input type="username" id="username" name="username" placeholder="Username" class="form-control"
                        ng-model="registerUser.username" ng-minlength=1 ng-maxlength=50 required autofocus>
             </div>
@@ -41,7 +41,7 @@
                                            'has-success has-feedback':form.email.$valid && form.email.$dirty}">
             <label class="control-label" for="email">Email</label>
             <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
                 <input type="email" id="email" name="email" placeholder="Email" class="form-control"
                        ng-model="registerUser.email" ng-minlength=1 ng-maxlength=50 required>
             </div>
@@ -57,7 +57,10 @@
                                            'has-success has-feedback':form.password.$valid && form.password.$dirty}">
             <label class="control-label" for="password">Password</label>
             <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                <div class="input-group-addon">
+                    <i ng-show="form.password.$invalid" class="fa fa-unlock-alt"></i>
+                    <i ng-show="form.password.$valid" class="fa fa-lock"></i>
+                </div>
                 <input type="password" id="password" name="password" placeholder="Password" class="form-control"
                        ng-model="registerUser.password" ng-minlength=5 ng-maxlength=500 required>
             </div>
@@ -72,7 +75,10 @@
                                            'has-success has-feedback':form.confirmpassword.$valid && form.confirmpassword.$dirty && confirmPassword == registerUser.password}">
             <label class="control-label" for="confirmPassword">Confirm password</label>
             <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
+                <div class="input-group-addon">
+                    <i ng-show="form.confirmpassword.$invalid" class="fa fa-unlock-alt"></i>
+                    <i ng-show="form.confirmpassword.$valid" class="fa fa-lock"></i>
+                </div>
                 <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password" class="form-control"
                        ng-model="confirmPassword" ng-minlength=5 ng-maxlength=500 required>
             </div>
