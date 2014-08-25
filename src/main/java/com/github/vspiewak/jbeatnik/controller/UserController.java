@@ -1,5 +1,6 @@
 package com.github.vspiewak.jbeatnik.controller;
 
+import com.github.vspiewak.jbeatnik.domain.Authority;
 import com.github.vspiewak.jbeatnik.domain.User;
 import com.github.vspiewak.jbeatnik.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")

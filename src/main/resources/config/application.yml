@@ -14,27 +14,6 @@ management:
     security:
         enabled: true
 
-spring:
-    thymeleaf:
-        mode: HTML5
-        cache: false
-
-    datasource:
-        url: jdbc:h2:mem:jbeatnik
-        dataSourceClassName: org.h2.jdbcx.JdbcDataSource
-        username:
-        password:
-        schema: classpath:/sql/schema.sql
-        data: classpath:/sql/data.sql
-
-    jpa:
-        database-platform: org.hibernate.dialect.H2Dialect
-        database: H2
-        show_sql: true
-        generate-ddl: false
-        hibernate:
-            ddl-auto: none
-
 authentication:
     oauth:
         clientid: jbeatnikapp

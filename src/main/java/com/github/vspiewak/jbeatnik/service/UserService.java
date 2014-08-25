@@ -55,9 +55,12 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    @Transactional(readOnly = true)
     public User getAuthenticatedUser() {
         String currentUsername = SecurityUtils.getCurrentUsername();
-        return userRepository.findOne(currentUsername);
+        User user = userRepository.findOne(currentUsername);
+        user.getAuthorities().size(); // eagerly load user/authorities association
+        return user;
     }
 
 }

@@ -1,0 +1,21 @@
+spring:
+    profiles: prod
+    
+    datasource:
+        url: jdbc:mysql://localhost:3306/jbeatnik
+        dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+        username: root
+        password:
+
+    jpa:
+        database-platform: org.hibernate.dialect.MySQLInnoDBDialect
+        database: MYSQL
+        openInView: false
+        show_sql: true
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+            
+    thymeleaf:
+        mode: HTML5
+        cache: true

@@ -21,7 +21,7 @@ public class User {
     @Size(min = 0, max = 50)
     private String email;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(
             name = "user_authority",
             joinColumns = @JoinColumn(name = "username"),
