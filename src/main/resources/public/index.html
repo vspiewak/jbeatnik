@@ -90,8 +90,10 @@
 
             <div ng-view></div>
 
-            <div>{{infos.app.version}} - {{infos.git.branch}} - {{infos.git.commit.id}} - {{infos.git.commit.time}}</div>
+        </div>
 
+        <div class="footer">
+            <p class="text-muted">Version {{infos.app.version}} - Branch {{infos.git.branch}} - Hash {{infos.git.commit.id}} - Time {{infos.git.commit.time}}</p>
         </div>
 
         <script src="bower_components/jquery/dist/jquery.js"></script>
