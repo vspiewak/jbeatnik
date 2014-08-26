@@ -54,8 +54,9 @@ angular.module('myApp', [
                 }
             })
 
-            .when('/admin', {
-                templateUrl: 'views/admin.html',
+            .when('/configprops', {
+                templateUrl: 'views/configprops.html',
+                controller: 'ConfigurationPropertiesController',
                 access: {
                     authorizedRoles: [USER_ROLES.admin]
                 }

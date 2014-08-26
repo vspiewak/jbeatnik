@@ -88,6 +88,45 @@ angular.module('myApp.controllers', [])
 
     }])
 
+    .controller('ConfigurationPropertiesController', ['$scope', 'ConfigurationPropertiesService', function($scope, ConfigurationPropertiesService) {
+
+        ConfigurationPropertiesService.get(function(data) {
+
+            var extractProperties = function(label, obj, result) {
+
+                var keys = Object.keys(obj);
+                angular.forEach(keys, function(key) {
+                    var name = label + "." + key;
+                    var value = obj[key];
+                    if(angular.isObject(value)) {
+                        result.concat(extractProperties(name, value, result));
+                    } else {
+                        result.push({ 'name':name, 'value':value });
+                    }
+
+                });
+
+            };
+
+            var keys = Object.keys(data);
+
+            angular.forEach(keys, function(key) {
+
+                if(data[key].prefix != undefined) {
+
+                    var properties = [];
+                    extractProperties(data[key].prefix, data[key].properties, properties);
+                    data[key].properties = properties;
+
+                }
+
+            });
+
+            $scope.configprops = data;
+        });
+
+    }])
+
     .controller('AboutController', ['$scope', function($scope) {
 
     }]);

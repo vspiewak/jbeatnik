@@ -1,0 +1,23 @@
+<h2>Configuration properties</h2>
+
+    <div id="configprops" class="row">
+        <div class="col-md-12">
+
+            <table class="table table-bordered" ng-repeat="(key, value) in configprops" ng-if="configprops[key].properties.length > 0">
+                <thead>
+                    <tr>
+                        <th colspan="2">{{configprops[key].prefix}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="prop in configprops[key].properties">
+                        <td>{{prop.name}}</td>
+                        <td>{{prop.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>

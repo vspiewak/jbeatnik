@@ -14,6 +14,14 @@ angular.module('myApp.services', [])
         }
     ])
 
+    .factory('ConfigurationPropertiesService', ['$resource',
+        function ($resource) {
+            return $resource('manage/configprops', {}, {
+                'get': { method: 'GET' }
+            });
+        }
+    ])
+
     .factory('RegisterService', ['$resource',
         function ($resource) {
             return $resource('api/register', {}, {
