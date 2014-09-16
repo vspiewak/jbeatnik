@@ -22,6 +22,22 @@ angular.module('myApp.services', [])
         }
     ])
 
+    .factory('LostPasswordService', ['$resource',
+        function ($resource) {
+            return $resource('api/lostpassword', {}, {
+                'do': { method: 'POST' }
+            });
+        }
+    ])
+
+    .factory('ResetPasswordService', ['$resource',
+        function ($resource) {
+            return $resource('api/resetpassword', {}, {
+                'reset': { method: 'POST' }
+            });
+        }
+    ])
+
     .factory('RegisterService', ['$resource',
         function ($resource) {
             return $resource('api/register', {}, {

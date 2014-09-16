@@ -21,3 +21,13 @@ spring:
     thymeleaf:
         mode: HTML5
         cache: false
+
+    mail:
+        host: localhost
+        from: no-reply@jbeatnik.io
+        port: 25
+        user:
+        password:
+        protocol: smtp
+        tls: false
+        auth: false

@@ -19,3 +19,13 @@ spring:
     thymeleaf:
         mode: HTML5
         cache: true
+
+    mail:
+        host: smtp.gmail.com
+        from: dummy@yopmail.com
+        port: 587
+        user: dummy
+        password: **********
+        protocol: smtp
+        tls: true
+        auth: true

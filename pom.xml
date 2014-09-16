@@ -19,6 +19,7 @@
     <properties>
         <java.version>1.7</java.version>
         <javax.inject.version>1</javax.inject.version>
+        <javax.mail.version>1.4.7</javax.mail.version>
         <json-path.version>0.9.1</json-path.version>
         <spring-security-oauth2.version>2.0.2.RELEASE</spring-security-oauth2.version>
         <start-class>com.github.vspiewak.jbeatnik.Application</start-class>
@@ -73,6 +74,19 @@
             <groupId>org.springframework.security.oauth</groupId>
             <artifactId>spring-security-oauth2</artifactId>
             <version>${spring-security-oauth2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>${javax.mail.version}</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>

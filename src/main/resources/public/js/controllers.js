@@ -21,6 +21,78 @@ angular.module('myApp.controllers', [])
 
     }])
 
+    .controller('LostPasswordController', ['$scope', 'LostPasswordService', function($scope, LostPasswordService) {
+
+        $scope.lostPassword = function() {
+
+            $scope.success = false;
+            $scope.error = false;
+
+            LostPasswordService.do($scope.lostUser,
+                function (value, responseHeaders) {
+
+                    $scope.success = true;
+
+                },
+                function (httpResponse) {
+
+                    //TODO: different status code ?
+                    //if (httpResponse.status === 400
+                    //    && httpResponse.statusText === "Bad Request") {
+
+                        $scope.error = true;
+
+                    //}
+
+                }
+            );
+        };
+
+
+    }])
+
+    .controller('ResetPasswordController', ['$scope', '$routeParams', 'ResetPasswordService', function($scope, $routeParams, ResetPasswordService) {
+
+        console.log($routeParams);
+        $scope.resetUser = {};
+        $scope.resetUser.email = $routeParams.email;
+        $scope.resetUser.resetPasswordKey = $routeParams.key;
+
+        $scope.resetPassword = function() {
+
+            $scope.success = false;
+            $scope.error = false;
+
+            if($scope.resetUser.password != $scope.confirmPassword) {
+
+                $scope.errorPasswordNotMatching = true;
+
+            } else {
+                ResetPasswordService.reset($scope.resetUser,
+                    function (value, responseHeaders) {
+
+                        $scope.success = true;
+
+                    },
+                    function (httpResponse) {
+
+                        //TODO: different status code ?
+                        //if (httpResponse.status === 400
+                        //    && httpResponse.statusText === "Bad Request") {
+
+                            $scope.error = true;
+
+                        //}
+
+                    }
+                );
+            }
+
+        }
+
+
+    }])
+
     .controller('RegisterController', ['$scope', 'RegisterService', function($scope, RegisterService) {
 
         $scope.register = function () {

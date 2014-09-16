@@ -30,6 +30,22 @@ angular.module('myApp', [
                 }
             })
 
+            .when('/lostpassword', {
+                templateUrl: 'views/lostpassword.html',
+                controller: 'LostPasswordController',
+                access: {
+                    authorizedRoles: [USER_ROLES.all]
+                }
+            })
+
+            .when('/resetpassword', {
+                templateUrl: 'views/resetpassword.html',
+                controller: 'ResetPasswordController',
+                access: {
+                    authorizedRoles: [USER_ROLES.all]
+                }
+            })
+
             .when('/login', {
                 templateUrl: 'views/login.html',
                 controller: 'LoginController',

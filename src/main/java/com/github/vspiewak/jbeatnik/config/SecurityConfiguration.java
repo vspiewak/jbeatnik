@@ -44,7 +44,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .ignoring()
                 .antMatchers("/bower_components/**")
                 .antMatchers("/h2console/**")
-                .antMatchers("/api/register");
+                .antMatchers("/api/register")
+                .antMatchers("/api/lostpassword")
+                .antMatchers("/api/resetpassword");
 
     }
 

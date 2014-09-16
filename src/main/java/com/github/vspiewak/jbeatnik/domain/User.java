@@ -21,6 +21,10 @@ public class User {
     @Size(min = 0, max = 50)
     private String email;
 
+    @Size(min = 0, max = 100)
+    @Column(name = "resetpasswordkey")
+    private String resetPasswordKey;
+
     @ManyToMany
     @JoinTable(
             name = "user_authority",
@@ -50,6 +54,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getResetPasswordKey() {
+        return resetPasswordKey;
+    }
+
+    public void setResetPasswordKey(String resetPasswordKey) {
+        this.resetPasswordKey = resetPasswordKey;
     }
 
     public Set<Authority> getAuthorities() {
@@ -83,7 +95,8 @@ public class User {
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", resetPasswordKey='" + resetPasswordKey + '\'' +
+                ", authorities=" + authorities +
                 '}';
     }
-
 }

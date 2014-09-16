@@ -19,3 +19,6 @@ authentication:
         clientid: jbeatnikapp
         secret: myOAuthSecret
         tokenValidityInSeconds: 1800 # Token is valid 30 minutes
+
+    messageSource:
+        cacheSeconds: 1

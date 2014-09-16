@@ -14,6 +14,10 @@ Sample
     curl -i -H "Authorization: Bearer <access_token>" http://localhost:9000/manage/metrics
     curl -i -H "Authorization: Bearer <access_token>" http://localhost:9000/oauth/logout
 
+    sudo python -m smtpd -n -c DebuggingServer localhost:25
+    curl -i -XPOST -H "Content-Type: application/json" -d '{"email":"user@mail.me"}' http://localhost:9000/api/lostpassword
+    curl -i -XPOST -H "Content-Type: application/json" -d '{"email": "user@mail.me","password":"toto","resetPasswordKey":"2de8b058-16ae-483c-a2a1-c26c94b93992"}' http://localhost:9000/api/resetpassword
+    
 Docs
 ----
 * http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle

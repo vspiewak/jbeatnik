@@ -1,7 +1,8 @@
 CREATE TABLE user (
   username VARCHAR(50) NOT NULL PRIMARY KEY,
+  email VARCHAR(50),
   password VARCHAR(500),
-  email VARCHAR(50)
+  resetpasswordkey VARCHAR(50) DEFAULT NULL
 );
 
 CREATE TABLE authority (
