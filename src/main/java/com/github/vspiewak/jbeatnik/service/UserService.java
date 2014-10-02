@@ -43,6 +43,11 @@ public class UserService {
         return userRepository.findOne(username) != null;
     }
 
+    @Transactional(readOnly = true)
+    public boolean emailAlreadyExist(String email) {
+        return userRepository.findByEmail(email) != null;
+    }
+
     @Transactional
     public User registerUser(String username, String password, String email) {
         User user = new User();
@@ -87,5 +92,4 @@ public class UserService {
         }
         return user;
     }
-
 }

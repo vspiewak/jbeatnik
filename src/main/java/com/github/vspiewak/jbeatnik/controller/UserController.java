@@ -50,7 +50,9 @@ public class UserController {
     public ResponseEntity<?> register(@RequestBody User user) {
 
         if (userService.alreadyExist(user.getUsername())) {
-            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return new ResponseEntity<>(new Error(1, "Username already exist"), HttpStatus.BAD_REQUEST);
+        } else if(userService.emailAlreadyExist(user.getEmail())) {
+            return new ResponseEntity<>(new Error(2, "Email already exist"), HttpStatus.BAD_REQUEST);
         } else {
             user = userService.registerUser(user.getUsername(), user.getPassword(), user.getEmail().trim().toLowerCase());
             user.setPassword(null);

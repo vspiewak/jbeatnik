@@ -103,6 +103,7 @@ angular.module('myApp.controllers', [])
             $scope.success = false;
             $scope.error = false;
             $scope.errorUsernameExist = false;
+            $scope.errorEmailExist = false;
             $scope.errorPasswordNotMatching = false;
 
             if($scope.registerUser.password != $scope.confirmPassword) {
@@ -119,10 +120,13 @@ angular.module('myApp.controllers', [])
                     },
                     function (httpResponse) {
                         console.log('error', httpResponse);
-                        if (httpResponse.status === 304
-                            && httpResponse.statusText === "Not Modified") {
+                        if (httpResponse.status === 400 && httpResponse.data.code == 1) {
 
                             $scope.errorUsernameExist = true;
+
+                        } else if (httpResponse.status === 400 && httpResponse.data.code == 2) {
+
+                            $scope.errorEmailExist = true;
 
                         } else {
 

@@ -11,6 +11,10 @@
         <strong>Username already exist !</strong> Please choose another one.
     </div>
 
+    <div class="alert alert-danger" ng-show="errorEmailExist">
+        <strong>Email already exist !</strong> Did you <a href="#/lostpassword">Forgot your password ?</a>
+    </div>
+
     <div class="alert alert-danger" ng-show="errorPasswordNotMatching">
         The password and its confirmation do not match !
     </div>
