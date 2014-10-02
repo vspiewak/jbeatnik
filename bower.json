@@ -9,7 +9,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "src/main/resources/public/bower_components",
+    "src/main/webapp/bower_components",
     "test",
     "tests"
   ],
