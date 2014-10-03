@@ -119,13 +119,18 @@ angular.module('myApp.controllers', [])
 
                     },
                     function (httpResponse) {
-                        console.log('error', httpResponse);
+
                         if (httpResponse.status === 400 && httpResponse.data.code == 1) {
 
                             $scope.errorUsernameExist = true;
 
                         } else if (httpResponse.status === 400 && httpResponse.data.code == 2) {
 
+                            $scope.errorEmailExist = true;
+
+                        } else if (httpResponse.status === 400 && httpResponse.data.code == 3) {
+
+                            $scope.errorUsernameExist = true;
                             $scope.errorEmailExist = true;
 
                         } else {

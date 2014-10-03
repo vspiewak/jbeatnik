@@ -49,10 +49,15 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> register(@RequestBody User user) {
 
-        if (userService.alreadyExist(user.getUsername())) {
-            return new ResponseEntity<>(new Error(1, "Username already exist"), HttpStatus.BAD_REQUEST);
-        } else if(userService.emailAlreadyExist(user.getEmail())) {
+        boolean usernameAlreadyExist = userService.alreadyExist(user.getUsername());
+        boolean emailAlreadyExist = userService.emailAlreadyExist(user.getEmail());
+
+        if(usernameAlreadyExist && emailAlreadyExist) {
+            return new ResponseEntity<>(new Error(3, "Username and Email already exist"), HttpStatus.BAD_REQUEST);
+        } else if (emailAlreadyExist) {
             return new ResponseEntity<>(new Error(2, "Email already exist"), HttpStatus.BAD_REQUEST);
+        } else if (usernameAlreadyExist) {
+            return new ResponseEntity<>(new Error(1, "Username already exist"), HttpStatus.BAD_REQUEST);
         } else {
             user = userService.registerUser(user.getUsername(), user.getPassword(), user.getEmail().trim().toLowerCase());
             user.setPassword(null);
@@ -61,14 +66,14 @@ public class UserController {
 
     }
 
-    @RequestMapping(value="/lostpassword", method=RequestMethod.POST)
+    @RequestMapping(value = "/lostpassword", method = RequestMethod.POST)
     public ResponseEntity<?> lostPassword(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
 
-        if(!StringUtils.isEmpty(user.getEmail())) {
+        if (!StringUtils.isEmpty(user.getEmail())) {
 
             User resetUser = userService.lostPassword(user.getEmail().trim().toLowerCase());
 
-            if(resetUser != null) {
+            if (resetUser != null) {
                 //TODO: replace with user locale
                 Locale locale = Locale.ENGLISH;
                 String content = createHtmlContentFromTemplate(resetUser, locale, request, response);
@@ -82,10 +87,10 @@ public class UserController {
 
     }
 
-    @RequestMapping(value="/resetpassword", method=RequestMethod.POST)
+    @RequestMapping(value = "/resetpassword", method = RequestMethod.POST)
     public ResponseEntity<?> resetPassword(@RequestBody User user) {
 
-        if(!StringUtils.isEmpty(user.getEmail()) &&
+        if (!StringUtils.isEmpty(user.getEmail()) &&
                 !StringUtils.isEmpty(user.getPassword()) &&
                 !StringUtils.isEmpty(user.getResetPasswordKey())) {
 
@@ -94,7 +99,7 @@ public class UserController {
                     user.getPassword(),
                     user.getResetPasswordKey().trim().toLowerCase());
 
-            if(resetUser != null) {
+            if (resetUser != null) {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
 
@@ -104,12 +109,12 @@ public class UserController {
 
     }
 
-    @RequestMapping(value="/profile", method=RequestMethod.GET)
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public ResponseEntity<User> profile() {
 
         User currentUser = userService.getAuthenticatedUser();
 
-        if(currentUser == null) {
+        if (currentUser == null) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
