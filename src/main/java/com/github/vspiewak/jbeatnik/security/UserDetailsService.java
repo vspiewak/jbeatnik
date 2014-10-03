@@ -42,6 +42,8 @@ public class UserDetailsService implements org.springframework.security.core.use
 
         if (userFromDatabase == null) {
             throw new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the database");
+        } else if (!userFromDatabase.isActivated()) {
+            throw new UserNotActivatedException("User " + lowercaseLogin + " is not activated");
         }
 
         Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();

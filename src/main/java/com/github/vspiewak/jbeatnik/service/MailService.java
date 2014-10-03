@@ -67,10 +67,19 @@ public class MailService {
     }
 
     @Async
+    public void sendAccountActivationEmail(String email, String content, Locale locale) {
+        log.debug("Sending activation e-mail to '{}'", email);
+        String subject = messageSource.getMessage("email.accountactivation.title", null, locale);
+        log.info("Mail subject: {} - {}", locale, subject);
+        sendEmail(email, subject, content, false, true);
+    }
+
+    @Async
     public void sendResetPasswordEmail(String email, String content, Locale locale) {
         log.debug("Sending reset password e-mail to '{}'", email);
         String subject = messageSource.getMessage("email.resetpassword.title", null, locale);
         log.info("Mail subject: {} - {}", locale, subject);
         sendEmail(email, subject, content, false, true);
     }
+
 }

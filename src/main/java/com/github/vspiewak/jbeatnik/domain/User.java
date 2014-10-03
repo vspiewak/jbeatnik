@@ -21,6 +21,12 @@ public class User {
     @Size(min = 0, max = 50)
     private String email;
 
+    private boolean activated;
+
+    @Size(min = 0, max = 100)
+    @Column(name = "activationkey")
+    private String activationKey;
+
     @Size(min = 0, max = 100)
     @Column(name = "resetpasswordkey")
     private String resetPasswordKey;
@@ -54,6 +60,22 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
+    public String getActivationKey() {
+        return activationKey;
+    }
+
+    public void setActivationKey(String activationKey) {
+        this.activationKey = activationKey;
     }
 
     public String getResetPasswordKey() {
@@ -95,6 +117,8 @@ public class User {
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", activated='" + activated + '\'' +
+                ", activationKey='" + activationKey + '\'' +
                 ", resetPasswordKey='" + resetPasswordKey + '\'' +
                 ", authorities=" + authorities +
                 '}';

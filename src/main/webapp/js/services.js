@@ -45,6 +45,13 @@ angular.module('myApp.services', [])
         }
     ])
 
+    .factory('ActivateService', ['$resource',
+        function ($resource) {
+            return $resource('api/activate', {}, {
+                'get': { method: 'GET' }
+            });
+        }
+    ])
 
     .factory('Profile', ['$resource',
         function ($resource) {

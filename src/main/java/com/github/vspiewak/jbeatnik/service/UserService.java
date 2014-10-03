@@ -24,7 +24,8 @@ public class UserService {
     @Inject
     private PasswordEncoder passwordEncoder;
 
-    @Inject MailService mailService;
+    @Inject
+    MailService mailService;
 
     @Inject
     private AuthorityRepository authorityRepository;
@@ -57,6 +58,9 @@ public class UserService {
         user.setUsername(username);
         user.setPassword(encryptedPassword);
         user.setEmail(email);
+        user.setActivated(false);
+        String key = UUID.randomUUID().toString();
+        user.setActivationKey(key);
         authorities.add(authority);
         user.setAuthorities(authorities);
         return userRepository.save(user);
@@ -73,7 +77,7 @@ public class UserService {
     @Transactional
     public User lostPassword(String email) {
         User user = userRepository.findByEmail(email);
-        if(user != null) {
+        if (user != null) {
             String key = UUID.randomUUID().toString();
             user.setResetPasswordKey(key);
             user = userRepository.save(user);
@@ -82,9 +86,20 @@ public class UserService {
     }
 
     @Transactional
+    public User activateUser(String email, String activationKey) {
+        User user = userRepository.findByEmailAndActivationKey(email, activationKey);
+        if (user != null) {
+            user.setActivated(true);
+            user.setActivationKey(null);
+            user = userRepository.save(user);
+        }
+        return user;
+    }
+
+    @Transactional
     public User resetPassword(String email, String password, String resetPasswordKey) {
         User user = userRepository.findByEmailAndResetPasswordKey(email, resetPasswordKey);
-        if(user != null) {
+        if (user != null) {
             String encryptedPassword = passwordEncoder.encode(password);
             user.setPassword(encryptedPassword);
             user.setResetPasswordKey(null);
@@ -92,4 +107,5 @@ public class UserService {
         }
         return user;
     }
+
 }

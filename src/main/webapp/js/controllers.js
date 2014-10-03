@@ -144,6 +144,19 @@ angular.module('myApp.controllers', [])
 
     }])
 
+    .controller('ActivateController', function ($scope, $routeParams, ActivateService) {
+        console.log($routeParams);
+        ActivateService.get({email: $routeParams.email, key: $routeParams.key},
+            function (value, responseHeaders) {
+                $scope.error = null;
+                $scope.success = 'OK';
+            },
+            function (httpResponse) {
+                $scope.success = null;
+                $scope.error = "ERROR";
+            });
+    })
+
     .controller('LoginController', ['$scope', 'AuthenticationService', 'Session', function($scope, AuthenticationService, Session) {
 
         $scope.login = function () {

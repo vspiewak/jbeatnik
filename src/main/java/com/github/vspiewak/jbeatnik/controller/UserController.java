@@ -9,10 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.context.IWebContext;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.context.SpringWebContext;
@@ -47,7 +44,7 @@ public class UserController {
     @RequestMapping(value = "/register",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> register(@RequestBody User user) {
+    public ResponseEntity<?> register(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
 
         String usernamePattern = "^[a-zA-Z0-9]+$";
         boolean validUsername = user.getUsername().matches(usernamePattern);
@@ -63,9 +60,16 @@ public class UserController {
         } else if (usernameAlreadyExist) {
             return new ResponseEntity<>(new Error(1, "Username already exist"), HttpStatus.BAD_REQUEST);
         } else {
+
             user = userService.registerUser(user.getUsername(), user.getPassword(), user.getEmail().trim().toLowerCase());
             user.setPassword(null);
+
+            //TODO: replace with user locale
+            Locale locale = Locale.ENGLISH;
+            String content = createHtmlContentFromTemplate("accountActivationEmail", user, locale, request, response);
+            mailService.sendAccountActivationEmail(user.getEmail(), content, locale);
             return new ResponseEntity<>(user, HttpStatus.CREATED);
+
         }
 
     }
@@ -80,8 +84,28 @@ public class UserController {
             if (resetUser != null) {
                 //TODO: replace with user locale
                 Locale locale = Locale.ENGLISH;
-                String content = createHtmlContentFromTemplate(resetUser, locale, request, response);
+                String content = createHtmlContentFromTemplate("resetPasswordEmail", resetUser, locale, request, response);
                 mailService.sendResetPasswordEmail(resetUser.getEmail(), content, locale);
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+    }
+
+    @RequestMapping(value = "/activate", method = RequestMethod.GET)
+    public ResponseEntity<?> activateUser(@RequestParam String email, @RequestParam String key) {
+
+        if (!StringUtils.isEmpty(email) &&
+                !StringUtils.isEmpty(key)) {
+
+            User activatedUser = userService.activateUser(
+                    email.trim().toLowerCase(),
+                    key.trim().toLowerCase());
+
+            if (activatedUser != null) {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
 
@@ -128,16 +152,16 @@ public class UserController {
 
     }
 
-    private String createHtmlContentFromTemplate(final User user, final Locale locale, final HttpServletRequest request,
+    private String createHtmlContentFromTemplate(final String template, final User user, final Locale locale, final HttpServletRequest request,
                                                  final HttpServletResponse response) {
-        Map<String, Object> variables = new HashMap<String, Object>();
+        Map<String, Object> variables = new HashMap<>();
         variables.put("user", user);
         variables.put("baseUrl", request.getScheme() + "://" +   // "http" + "://
                 request.getServerName() +       // "myhost"
                 ":" + request.getServerPort());
         IWebContext context = new SpringWebContext(request, response, servletContext,
                 locale, variables, applicationContext);
-        return templateEngine.process("resetpasswordEmail", context);
+        return templateEngine.process(template, context);
     }
 
 }

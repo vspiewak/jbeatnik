@@ -30,6 +30,14 @@ angular.module('myApp', [
                 }
             })
 
+            .when('/activate', {
+                templateUrl: 'views/activate.html',
+                controller: 'ActivateController',
+                access: {
+                    authorizedRoles: [USER_ROLES.all]
+                }
+            })
+
             .when('/lostpassword', {
                 templateUrl: 'views/lostpassword.html',
                 controller: 'LostPasswordController',
