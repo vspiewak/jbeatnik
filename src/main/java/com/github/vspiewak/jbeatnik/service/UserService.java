@@ -40,7 +40,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public boolean alreadyExist(String username) {
-        return userRepository.findOne(username) != null;
+        return userRepository.findByUsernameCaseInsensitive(username) != null;
     }
 
     @Transactional(readOnly = true)
