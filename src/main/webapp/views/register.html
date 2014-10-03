@@ -31,7 +31,7 @@
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-user"></i></div>
                 <input type="username" id="username" name="username" placeholder="Username" class="form-control"
-                       ng-model="registerUser.username" ng-minlength=1 ng-maxlength=50 required autofocus>
+                       ng-model="registerUser.username" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[a-zA-Z0-9]+$/" required autofocus>
             </div>
             <div ng-show="form.username.$dirty">
                 <span ng-show="form.username.$valid && !errorUsernameExist" class="form-control-feedback glyphicon glyphicon-ok"></span>

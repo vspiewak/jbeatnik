@@ -49,10 +49,14 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> register(@RequestBody User user) {
 
+        String usernamePattern = "^[a-zA-Z0-9]+$";
+        boolean validUsername = user.getUsername().matches(usernamePattern);
         boolean usernameAlreadyExist = userService.alreadyExist(user.getUsername());
         boolean emailAlreadyExist = userService.emailAlreadyExist(user.getEmail());
 
-        if(usernameAlreadyExist && emailAlreadyExist) {
+        if(!validUsername) {
+            return new ResponseEntity<>(new Error(4, "Username not valid, must match: " + usernamePattern), HttpStatus.BAD_REQUEST);
+        } else if(usernameAlreadyExist && emailAlreadyExist) {
             return new ResponseEntity<>(new Error(3, "Username and Email already exist"), HttpStatus.BAD_REQUEST);
         } else if (emailAlreadyExist) {
             return new ResponseEntity<>(new Error(2, "Email already exist"), HttpStatus.BAD_REQUEST);

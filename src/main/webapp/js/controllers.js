@@ -97,9 +97,6 @@ angular.module('myApp.controllers', [])
 
         $scope.register = function () {
 
-            console.log('register...');
-            console.log($scope.registerUser);
-
             $scope.success = false;
             $scope.error = false;
             $scope.errorUsernameExist = false;
