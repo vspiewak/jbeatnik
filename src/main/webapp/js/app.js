@@ -102,30 +102,31 @@ angular.module('myApp', [
         }
     ])
 
-    .run(['$rootScope', '$location', '$http', 'AuthenticationService', 'Session', 'USER_ROLES',
+    .run(['$rootScope', '$location', '$http', 'AuthenticationService',
         function($rootScope, $location, $http, AuthenticationService) {
             $rootScope.$on('$routeChangeStart', function (event, next) {
-                //console.log('$routeChangeStart');
+                console.log('$routeChangeStart: ', $location.path());
                 AuthenticationService.valid(next.access.authorizedRoles);
             });
 
             // Call when the the client is confirmed
             $rootScope.$on('event:auth-loginConfirmed', function(data) {
-                //console.log('event:auth-loginConfirmed');
-                //if ($location.path() === "/login") {
+                console.log('event:auth-loginConfirmed');
+                if ($location.path() === "/home" || $location.path() === "/login") {
                     $location.path('/profile').replace();
-                //}
+                }
             });
 
             // Call when the 401 response is returned by the server
             $rootScope.$on('event:auth-loginRequired', function(rejection) {
                 console.log('event:auth-loginRequired');
-                $location.path('/home').replace();
+                AuthenticationService.destroy();
+                $location.path('/login').replace();
             });
 
             // Call when the 403 response is returned by the server
             $rootScope.$on('event:auth-notAuthorized', function(rejection) {
-                //console.log('event:auth-notAuthorized');
+                console.log('event:auth-notAuthorized');
                 $location.path('/error').replace();
             });
 

@@ -175,19 +175,26 @@ angular.module('myApp.services', [])
                         ignoreAuthModule: 'ignoreAuthModule'
                     }).success(function (data) {
 
-                        $http.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;
                         AccessToken.set(data);
+                        $http.defaults.headers.common['Authorization'] = 'Bearer ' + AccessToken.get();
+
+                        var updateConfig = function(config) {
+                            config.headers['Authorization'] = 'Bearer ' + AccessToken.get();
+                            return config;
+                        };
 
                         Profile.get(function(data) {
 
                             var roles = $.map(data.authorities, function(o){ return o.name });
                             Session.create(data.username, data.email, roles);
-                            authService.loginConfirmed(data);
+
+                            authService.loginConfirmed(data, updateConfig);
 
                         });
 
                     }).error(function (data, status, headers, config) {
                         Session.destroy();
+                        AccessToken.destroy();
                     });
                 },
 
@@ -233,7 +240,7 @@ angular.module('myApp.services', [])
 
                     if(!this.isAuthorized(authorizedRoles)) {
 
-                        event.preventDefault();
+                        //event.preventDefault();
 
                         if(this.isAuthenticated()) {
                             $rootScope.$broadcast("event:auth-notAuthorized");
@@ -242,6 +249,11 @@ angular.module('myApp.services', [])
                         }
                     }
 
+                },
+
+                destroy: function() {
+                    Session.destroy();
+                    AccessToken.destroy();
                 },
 
                 logout: function() {
