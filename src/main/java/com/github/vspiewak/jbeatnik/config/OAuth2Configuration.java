@@ -3,6 +3,7 @@ package com.github.vspiewak.jbeatnik.config;
 import com.github.vspiewak.jbeatnik.security.Authorities;
 import com.github.vspiewak.jbeatnik.security.CustomAuthenticationEntryPoint;
 import com.github.vspiewak.jbeatnik.security.CustomLogoutSuccessHandler;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
@@ -85,6 +86,7 @@ public class OAuth2Configuration {
         }
 
         @Inject
+        @Qualifier("authenticationManagerBean")
         private AuthenticationManager authenticationManager;
 
         @Override
