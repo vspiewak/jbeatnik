@@ -3,6 +3,7 @@ package com.github.vspiewak.jbeatnik.controller;
 import com.github.vspiewak.jbeatnik.Application;
 import com.github.vspiewak.jbeatnik.service.UserService;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -37,7 +38,7 @@ public class UserControllerTest {
 
     @Test
     public void should_return_admin_when_get_users() throws Exception {
-        restUserMockMvc.perform(get("/user")
+        restUserMockMvc.perform(get("/api/profile")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith("application/json"))

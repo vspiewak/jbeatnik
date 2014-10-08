@@ -1,6 +1,7 @@
 package com.github.vspiewak.jbeatnik.controller;
 
 import com.github.vspiewak.jbeatnik.Application;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.IntegrationTest;
@@ -23,8 +24,8 @@ public class UserControllerTestIT {
     RestTemplate template = new TestRestTemplate();
 
     @Test
-    public void should_return_application_json_content_type_when_get_users() throws Exception {
-        HttpHeaders headers = template.getForEntity("http://localhost:9000/user", String.class).getHeaders();
+    public void should_return_application_json_content_type_when_get_profile() throws Exception {
+        HttpHeaders headers = template.getForEntity("http://localhost:9000/api/profile", String.class).getHeaders();
         assertTrue(headers.getContentType().isCompatibleWith(MediaType.APPLICATION_JSON));
     }
 

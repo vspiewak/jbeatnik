@@ -56,7 +56,7 @@ public class AuthenticationTestIT {
     @Test
     public void should_return_http_unauthorized_without_authentication() throws Exception {
 
-        ResponseEntity<String> response = template.getForEntity(BASE_URL + "/user", String.class);
+        ResponseEntity<String> response = template.getForEntity(BASE_URL + "/api/profile", String.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.UNAUTHORIZED));
 
     }
