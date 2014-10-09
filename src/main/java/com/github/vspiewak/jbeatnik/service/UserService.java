@@ -61,8 +61,11 @@ public class UserService {
     @Transactional(readOnly = true)
     public User getAuthenticatedUser() {
         String currentUsername = SecurityUtils.getCurrentUsername();
-        User user = userRepository.findOne(currentUsername);
-        user.getAuthorities().size(); // eagerly load user/authorities association
+        User user = null;
+        if(currentUsername != null) {
+            user = userRepository.findOne(currentUsername);
+            user.getAuthorities().size(); // eagerly load user/authorities association
+        }
         return user;
     }
 
