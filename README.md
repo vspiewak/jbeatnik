@@ -1,6 +1,15 @@
 JBeatnik
 ========
 
+Usage
+-----
+
+    mvn spring-boot:run
+
+    mvn package 
+    java -Dspring.profiles.active=prod -jar jbeatnik.jar
+
+
 Sample
 ------
 
@@ -17,6 +26,7 @@ Sample
     sudo python -m smtpd -n -c DebuggingServer localhost:25
     curl -i -XPOST -H "Content-Type: application/json" -d '{"email":"user@mail.me"}' http://localhost:9000/api/lostpassword
     curl -i -XPOST -H "Content-Type: application/json" -d '{"email": "user@mail.me","password":"toto","resetPasswordKey":"2de8b058-16ae-483c-a2a1-c26c94b93992"}' http://localhost:9000/api/resetpassword
+
     
 Docs
 ----
